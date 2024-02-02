@@ -1,0 +1,5 @@
+import io;
+
+while io.has_next(io.stdin) {
+  io.write_char(io.read_char(io.stdin));
+}

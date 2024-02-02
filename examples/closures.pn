@@ -1,0 +1,15 @@
+let x = 0;
+
+fn print_x() {
+  println(x);
+}
+
+
+x = x + 1;
+
+print_x() // Should Print '0'
+println(x) // Should Print '1'
+
+
+
+
