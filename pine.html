@@ -1,0 +1,63 @@
+<h1>Pine Langauge Specification</h1>
+
+<h2>Version 0.1.0</h2>
+
+<hr />
+
+<h2>Overview</h2>
+
+<p>Pine is a simple Dynamically-Typed Scripting Language. It takes elements from Go, C &amp; JavaScript.</p>
+
+<p><code>pine
+// Hello World Program.
+println("Hello, World!");
+</code></p>
+
+<h2>Grammar</h2>
+
+<p>```c
+<program> := <Statement>*
+<Statement> :=
+      <Block>
+    | <WhileStmt>
+    | <IfStmt>
+    | <ExprStmt>
+    | <LetStmt>
+    | <ReturnStmt>
+    | <FuncDef></p>
+
+<p><Block> := &lsquo;{&rsquo; (<Statement>)<em> &lsquo;}&rsquo;
+<WhileStmt> := &lsquo;while&rsquo; <Expr> <Block>
+<IfStmt>    := &lsquo;if&rsquo; <Expr> <Block> (&lsquo;else&rsquo; <Block>)?
+<ExprStmt>  := <Expr>&lsquo;;&rsquo;
+<ReturnStmt> := &lsquo;return&rsquo; <Expr>? &lsquo;;&rsquo;
+<FuncDef> := &lsquo;fn&rsquo; <Identifier> &lsquo;(&rsquo; (Identifier (&lsquo;,&rsquo; <Identifier>)</em>)? &lsquo;)&rsquo; <Block></p>
+
+<p><Expr> := <Comparison>
+<Comparison>    := <Factor> ((&lsquo;==&rsquo; | &lsquo;>=&rsquo; | &lsquo;&lt;=&rsquo; | &lsquo;!=&rsquo;) <Comparison>)?
+<Factor> := <Term> ((&lsquo;*&rsquo; | &lsquo;/&rsquo;) <Factor>)?
+<Term> := <Unary> ((&lsquo;+&rsquo; | &lsquo;-&rsquo;) <Term>)?
+<Unary> := ((&lsquo;!&rsquo; | &lsquo;-&rsquo;) <Unary> ) | <Atom></p>
+
+<p><Atom> :=
+      <Integer>
+    | <String>
+    | <Boolean>
+    | <Decimal>
+    | <Identifier>
+    | <Group>
+    | <Call></p>
+
+<p><Integer> := <Digit>+
+<Decimal> := <Integer> (&lsquo;.&rsquo; <Integer>)?
+<Digit> := [0-9]</p>
+
+<p><String> := &lsquo;&ldquo;&rsquo; (.*) &lsquo;&rdquo;&rsquo;
+<Boolean> := &lsquo;true&rsquo; | &lsquo;false&rsquo;</p>
+
+<p><Identifier> := [A-Za-z]+[A-Za-z0-9_]*
+<Group> := &lsquo;(&rsquo; <Expr> &lsquo;)&rsquo;</p>
+
+<p><Call> := <Identifier> &lsquo;(&rsquo; (<Expr> (&lsquo;,&rsquo; <Expr>)*)? &lsquo;)&rsquo;</p>
+
+<p>```</p>
