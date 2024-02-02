@@ -12,6 +12,21 @@ Pine is a simple Dynamically-Typed Scripting Language. It takes elements from Go
 println("Hello, World!");
 ```
 
+```pine
+// Factorials
+
+fn factorial(x) {
+    if x == 0 {
+        return 1;
+    }
+    return x * factorial(x - 1);
+}
+
+println("Factorial(3) = " + factorial(3))
+
+```
+
+
 
 ## Grammar
 
@@ -32,6 +47,8 @@ println("Hello, World!");
 <ExprStmt>  := <Expr>';'
 <ReturnStmt> := 'return' <Expr>? ';'
 <FuncDef> := 'fn' <Identifier> '(' (Identifier (',' <Identifier>)*)? ')' <Block>
+
+<LetStmt> := 'let' <Identifier> ('=' <Expr>) ';'
 
 <Expr> := <Comparison>
 <Comparison>    := <Factor> (('==' | '>=' | '<=' | '!=') <Comparison>)?
