@@ -26,11 +26,15 @@ println("Factorial(3) = " + factorial(3))
 
 ```
 
+Pine's Syntax should be familiar to the average programmer.
+See [examples](./examples).
+
+
 
 
 ## Grammar
 
-```c
+```ebnf
 <program> := <Statement>*
 <Statement> :=
       <Block>
